@@ -1,0 +1,8 @@
+PORT=5000
+
+NAME_DB=emory_db
+PASSWORD_DB=warmaks228
+USERNAME_DB=postgres
+HOSTNAME_DB=localhost
+PORT_DB=5432
+JWT_SECRET_KEY=Secret123

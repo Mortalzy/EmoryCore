@@ -1,0 +1,16 @@
+/* .header {
+
+} */
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pages-links {
+    display: flex;
+}
+
+.user-buttons {
+    display: flex;
+}

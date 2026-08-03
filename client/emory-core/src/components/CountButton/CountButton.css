@@ -1,0 +1,30 @@
+.count-button {
+    border: 1px solid red;
+    position: relative;
+    display: inline-flex;
+}
+
+.count-button__circle {
+    position: absolute;
+
+    top: 0px;
+    right: 0px;
+
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.count-button__counter {
+    color: white;
+    
+    font-weight: 700;
+    font-size: 10px;
+}
