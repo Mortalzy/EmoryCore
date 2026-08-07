@@ -1,0 +1,59 @@
+/* components/UI/Marquee/Marquee.css */
+
+/* Контейнер */
+.marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background: #f7fafc;
+    border-radius: 8px;
+    padding: 12px 0;
+    position: relative;
+}
+
+/* Контент с анимацией */
+.marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee-scroll var(--speed, 20s) linear infinite;
+}
+
+/* Пауза при наведении */
+.marquee-content[data-pause="true"]:hover {
+    animation-play-state: paused;
+}
+
+/* Дорожка с текстом */
+.marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.marquee-track > * {
+    flex-shrink: 0;
+}
+
+/* Анимация для движения влево */
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Анимация для движения вправо */
+.marquee-content.marquee--right {
+    animation: marquee-scroll-reverse var(--speed, 20s) linear infinite;
+}
+
+@keyframes marquee-scroll-reverse {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

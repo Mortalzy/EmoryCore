@@ -1,0 +1,44 @@
+.header {
+    border-bottom: 1px solid grey;
+}
+
+.navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    padding: 0 50px;
+    align-items: center;
+}
+
+.logo-button {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.big-button {
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin-right: 20px;
+}
+
+.left-side {
+    display: flex;
+    align-items: center;
+}
+
+.left-side__item {
+
+}
+
+.right-side {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.right-side__item {
+
+}

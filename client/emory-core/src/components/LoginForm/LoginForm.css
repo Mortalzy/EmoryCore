@@ -1,0 +1,36 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid black;
+    padding: 20px;
+    margin: 100px 200px;
+}
+
+.auth__title {
+
+}
+
+.auth__subtitle {
+
+}
+
+.auth__form {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 10px;
+}
+
+.auth__form input {
+    margin-bottom: 10px;
+}
+
+.auth__error {
+    color: red;
+}
+
+.auth__result-info {
+    color: green;
+}

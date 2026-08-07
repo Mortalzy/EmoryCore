@@ -1,0 +1,66 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+client/.env
+client/.env.local
+server/.env
+server/.env.local
+
+# Build folders
+client/build/
+client/dist/
+server/dist/
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+client/coverage/
+server/coverage/
+
+# Cache
+.cache/
+.parcel-cache/
+.vite/
+client/.vite/
+server/.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Database / uploads / temp
+*.sqlite
+*.sqlite3
+tmp/
+temp/
+uploads/
+
+# Optional: generated files
+*.tsbuildinfo
