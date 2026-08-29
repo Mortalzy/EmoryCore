@@ -13,6 +13,8 @@ const getProductsApi = async () => {
 }
 
 const createProductApi = async (productData) => {
+    console.log('createProductApi');
+    
     const response = await fetch(URL.PRODUCT_URL, {
         method: "POST",
         headers: {
@@ -31,7 +33,7 @@ const createProductApi = async (productData) => {
 }
 
 const deleteProductApi = async (id) => {
-    const response = await fetch(`${URL.PRODUCT_URL}${id}`, {
+    const response = await fetch(`${URL.PRODUCT_URL}/${id}`, {
         method: "DELETE",
     })
 
@@ -45,7 +47,7 @@ const deleteProductApi = async (id) => {
 }
 
 const updateProductApi = async (id, newData) => {
-    const response = await fetch(`${URL.PRODUCT_URL}${id}`, {
+    const response = await fetch(`${URL.PRODUCT_URL}/${id}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json',
@@ -62,9 +64,22 @@ const updateProductApi = async (id, newData) => {
     return data
 }
 
+const getProductsByCategoryApi = async (category_id) => {
+    const response = await fetch(`${URL.PRODUCT_URL}/category/${category_id}`)
+
+    const data = await response.json()
+
+    if(!response.ok) {
+        throw new Error(data.message)
+    }
+
+    return data
+}
+
 export {
     getProductsApi,
     createProductApi,
     deleteProductApi,
-    updateProductApi
+    updateProductApi,
+    getProductsByCategoryApi
 }

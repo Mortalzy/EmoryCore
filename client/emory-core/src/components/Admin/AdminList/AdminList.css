@@ -1,0 +1,16 @@
+.admin-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.list-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px;
+    gap: 10px;
+}
+
+.item {
+    
+}

@@ -1,19 +1,39 @@
 import './AdminPanel.css'
 import Button from '../../components/Button/Button.jsx'
 import Layout from '../../components/Layout/Layout.jsx'
-import ProductCard from '../../components/ProductCard/ProductCard.jsx'
+import AdminToggle from '../../components/Admin/AdminToggle/AdminToggle.jsx'
+import AdminForm from '../../components/Admin/AdminForm/AdminForm.jsx'
+import AdminList from '../../components/Admin/AdminList/AdminList.jsx'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 
 import useProduct from '../../hooks/useProduct.js'
+import useCategory from '../../hooks/useCategory.js'
+
+
 
 const AdminPanel = () => {
+
     const [formData, setFormData] = useState({
         name: '',
         description: '',
         imageUrl: '',
         price: '',
+        category_id: '',
     })
+
+    const [isEdit, setIsEdit] = useState(false)
+    const [editedId, setEditedId] = useState(null)
+
+    const [productMode, setProductMode] = useState(true)
+
+    const {
+        categories,
+        setCategories,
+        createCategory,
+        editCategory,
+        deleteCategory
+    } = useCategory()
 
     const {
         products,
@@ -23,12 +43,18 @@ const AdminPanel = () => {
         editProduct,
     } = useProduct()
 
-    const [isEditing, setIsEditing] = useState(false)
-    const [editId,setEditId] = useState(null)
-    
+    const resetForm = () => {
+        setFormData({
+            name: '',
+            description: '',
+            imageUrl: '',
+            price: '',
+            category_id: '',
+        })
+    }
+
     const handleChange = (event) => {
-        const {name, value} = event.target
-        console.log(formData);
+        const {value, name} = event.target
 
         setFormData({
             ...formData,
@@ -36,126 +62,115 @@ const AdminPanel = () => {
         })
     }
 
-    const handleDelete = (id) => {
-        deleteProduct(id)
-    }
-
-    const handleEdit = (id) => {
-        const product = products.find(prod => prod.id === id)
-        if(product) {
-            setIsEditing(true)
-            setEditId(id)
-            console.log(product);
-
-            setFormData({
-                name: product.name || '',
-                description: product.description || '',
-                imageUrl: product.imageUrl || '',
-                price: product.price || '',
-            })
-        }
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-        if(isEditing && editId) {
-            editProduct(editId, formData)
-
-            setIsEditing(false)
-            setEditId(null)
-            setFormData({
-                name: '',
-                description: '',
-                imageUrl: '',
-                price: '',
-            })
+        if(productMode) { // Продукты
+            if(isEdit && editedId) {
+                console.log(formData)
+                await editProduct(editedId, {
+                    name: formData.name,
+                    description: formData.description,
+                    imageUrl: formData.imageUrl, 
+                    price: Number(formData.price),
+                    category_id: Number(formData.category_id),
+                })
+            }
+            else {
+                await createProduct({
+                    name: formData.name,
+                    description: formData.description,
+                    imageUrl: formData.imageUrl, 
+                    price: Number(formData.price),
+                    category_id: Number(formData.category_id),
+                })
+            }
         }
-        else {
-            createProduct(formData)    
-        }
 
+        else { // Категории
+            if (isEdit && editedId) { // Если редактирование категории
+                await editCategory(editedId, formData)
+            
+            }
+            else {
+                await createCategory({
+                    name: formData.name,
+                    description: formData.description,
+                    imageUrl: formData.imageUrl,
+                    })    
+            }
+        }
+        resetForm()
+        setIsEdit(false)
+        setEditedId(null)
         
     }
 
-    return (
-        <Layout>
-            <div className='admin'>
-                <h1 className='admin__title'>Панель администратора</h1>
-
-                <div className='admin-sides'>
-                    <div className='admin__left-side'>
-                        <form className='form' onSubmit={handleSubmit}>
-                            <h2 className='form__title'>
-                                {isEditing ? "Редактирование товара" : "Создать товар"}
-                            </h2>
-                            <input
-                            type="text"
-                            name="name"
-                            placeholder='Название'
-                            value={formData.name}
-                            onChange={handleChange}
-                            />
-
-                            <input
-                            type="text"
-                            name="description"
-                            placeholder='Доп. информация'
-                            value={formData.description}
-                            onChange={handleChange}
-                            />
-
-                            <input
-                            type="text"
-                            name="imageUrl"
-                            placeholder='Ссылка на фото'
-                            value={formData.imageUrl}
-                            onChange={handleChange}
-                            />
-
-                            <input
-                            type="number"
-                            name="price"
-                            placeholder='Цена'
-                            value={formData.price}
-                            onChange={handleChange}
-                            />
-                            
-                            <Button
-                            className="form__add-btn"
-                            type='submit'
-                            >
-                            {isEditing ? "Сохранить" : "Добавить"}
-                            </Button>
-                        </form>
-                    </div>
-
-                    <div className='admin__right-side'>
-                        <h2 className=''>Список всех товаров</h2>
-
-                        <ul className='list-items'>
-                            {products.map( ({id, name, description, imageUrl, price}) => {
-                                return (
-                                    <ProductCard
-                                    id={id}
-                                    key={id}
-                                    name={name}
-                                    description={description}
-                                    imageUrl={imageUrl}
-                                    price={price}
-                                    onDelete={handleDelete}
-                                    onEdit={handleEdit}
-                                    isEditing = {editId === id}
-                                    />
-                                )
-                                })
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </Layout>
+    const handleDelete = (id) => {
+        if(productMode) {
+            deleteProduct(id)
+        } else {
+            deleteCategory(id)
+        }
         
+    }
+
+    const handleEdit = (id) => {
+        const items = productMode ? products : categories
+        const editedItem = items.find(cat => cat.id === id)
+
+        if(editedItem) {
+            setIsEdit(true)
+            setEditedId(editedItem.id)
+            console.log("Редактируемый объект: ", editedItem)
+            let newFormData = {
+                name: editedItem.name,
+                description: editedItem.description,
+                imageUrl: editedItem.imageUrl,
+            }
+            
+            if (productMode) {
+                newFormData = {
+                    ...newFormData,
+                    price: editedItem.price,
+                    category_id: editedItem.category_id
+                }
+            }
+            setFormData(newFormData)
+        }   
+    }
+
+    const currentItems = productMode ? products : categories
+
+     return (
+        <Layout>
+          <div className='admin'>
+              <h1 className='admin__title'>Панель администратора</h1>
+              <AdminToggle 
+              productMode= {productMode}
+              setProductMode={setProductMode}
+              resetForm={resetForm}
+              />
+              <div className='admin-main'>
+                <AdminForm
+                formData={formData}
+                categories={categories}
+                onChange={handleChange}
+                onSubmit={handleSubmit}
+                productMode={productMode}
+                isEdit={isEdit}
+                />
+                <AdminList 
+                items={currentItems}
+                productMode={productMode}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+                editedId={editedId}
+                />
+              </div>
+          </div>
+          
+       </Layout>    
     )
 }
 

@@ -6,7 +6,8 @@ const ROUTES = {
     FAVORITE: '/favorite',
     BASKET: '/basket',
     PROFILE: '/profile',
-    ADMIN: '/admin'
+    ADMIN: '/admin',
+    CATALOG: '/catalog'
 }
 
 export {

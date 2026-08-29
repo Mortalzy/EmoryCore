@@ -4,11 +4,13 @@ import RegistrationForm from "./components/RegistrationForm/RegistrationForm"
 import LoginForm from "./components/LoginForm/LoginForm"
 import MainPage from './pages/MainPage/MainPage'
 import AdminPanel from './pages/AdminPanel/AdminPanel'
-import Favorites from './pages/Favorites/Favorites'
+import FavoritesPage from './pages/FavoritesPage/FavoritesPage'
 import BasketPage from './pages/BasketPage/BasketPage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
+import CatalogPage from './pages/CatalogPage/CatalogPage'
 
 import { ROUTES } from './constants' 
+
 
 const App = () => {
   return (
@@ -20,7 +22,8 @@ const App = () => {
           <Route path={ROUTES.ADMIN} element={<AdminPanel/>}/>
           <Route path={ROUTES.BASKET} element={<BasketPage/>}/>
           <Route path={ROUTES.PROFILE} element={<ProfilePage/>}/>
-          <Route path={ROUTES.FAVORITE} element={<Favorites/>}/>
+          <Route path={ROUTES.CATALOG} element={<CatalogPage/>}/>
+          <Route path={ROUTES.FAVORITE} element={<FavoritesPage/>}/>
         </Routes>
       </BrowserRouter>
   )

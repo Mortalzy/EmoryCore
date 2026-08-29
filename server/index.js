@@ -15,10 +15,12 @@ app.use(cors())
 import productRouter from './routes/productRouter.js'
 import authRouter from './routes/authRouter.js'
 import categoryRouter from './routes/categoryRouter.js'
+import favoriteRouter from './routes/favoriteRouter.js'
 
 app.use('/api/products', productRouter)
 app.use('/api/categories', categoryRouter)
 app.use('/api/auth', authRouter)
+app.use('/api/favorites', favoriteRouter)
 
 
 const start = async () => {

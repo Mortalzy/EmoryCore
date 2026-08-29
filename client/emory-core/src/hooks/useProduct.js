@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { createProductApi, getProductsApi, deleteProductApi, updateProductApi } from '../api/productApi.js'
+import { createProductApi, getProductsApi, deleteProductApi, updateProductApi, getProductsByCategoryApi } from '../api/productApi.js'
 
 const useProduct = () => {
     const [products, setProducts] = useState([])
@@ -22,6 +22,8 @@ const useProduct = () => {
     }
 
     const createProduct = async (formData) => {
+        console.log('createProduct')
+        console.log(formData)
         createProductApi(formData)
         .then( (product) => {
             setProducts([...products, product])

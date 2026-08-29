@@ -1,42 +1,45 @@
-import './ProductCard.css'
-import Button from '../Button/Button'
+import "./ProductCard.css"
+import Button from "../Button/Button"
+import ImagePlaceholder from "../ImagePlaceholder/ImagePlaceholder"
+import {Heart} from 'lucide-react'
+import { useState } from "react"
 
 const ProductCard = (props) => {
     const {
-        id,
-        name,
-        description,
-        imageUrl,
-        price,
-        onDelete=null,
-        onEdit=null,
-        isEditing,
+        product,
+        isFavorite,
+        toggleFavorite
     } = props
 
+    const [imgError, setImgError] = useState(false)
+
     return (
-        <li key={id} className={`list-item ${isEditing ? 'list-item--editing' : ''}`}>
-            <div className='product'>
-                <div className='product__specials-btn'>
-                    <Button
-                    onClick={ () => onEdit(id)}
-                    className='product__spec-btn edit-btn'
-                    >
-                    edit
-                    </Button>
-
-                    <Button onClick={() => onDelete(id)}
-                    className='product__spec-btn delete-btn'
-                    >
-                    delete
-                    </Button>
-
-                </div>
-                <img className='product__img' 
-                src={imageUrl} alt="product-img" />
-                <h3 className='product__name'>{name}</h3>
-                <p className='product__price'>{price}</p>
-            </div>
-        </li>
+        <div className="product">
+            <Button className="product__favorite-btn"
+            onClick={() => toggleFavorite(product)}
+            >
+                <Heart
+                className={`favorite-icon ${isFavorite ? 'favorite-icon__active' : ''}`}
+                size={30}/>
+            </Button>
+            { product.imageUrl && !imgError
+            ? (
+                <img className="product-img" 
+                src={product.imageUrl} 
+                alt={product.name}
+                onError={() => setImgError(true)} 
+                />
+                
+            )
+            : ( 
+                <ImagePlaceholder/>
+            )
+            }
+            
+            <h2 className="product__title">{product.name}</h2>
+            {/* <h3 className="product__category">{product.category.name}</h3> */}
+            <p className="product__price">{product.price}</p>
+        </div>
     )
 }
 

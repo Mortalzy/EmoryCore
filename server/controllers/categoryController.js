@@ -1,7 +1,10 @@
-import { Category } from '../models/index.js';
+
+import { Category, Product } from '../models/index.js';
 
 const createCategory = async (req, res) => {
     try {
+        console.log(req.body)
+
         const {
             name,
             description,
@@ -63,7 +66,21 @@ const deleteCategoryById = async (req, res) => {
 
         if(!category) {
             return res.status(404).json({message: "Категория с выбранным id не найдена"})
-        }  
+        }
+
+        const noname_category = await Category.findOne({
+            where: {name: "Без названия"}
+        })
+
+        const linked_products = await Product.findAll({
+            where: {category_id: id}
+        })
+
+        for (const product of linked_products) {
+            await product.update({
+                category_id: noname_category.id 
+            })
+        }
 
         await category.destroy()
 

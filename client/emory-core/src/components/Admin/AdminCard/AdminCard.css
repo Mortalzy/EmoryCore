@@ -1,0 +1,31 @@
+.admin-card {
+    position: relative;
+    width: fit-content;
+}
+
+.admin-card--editing {
+    border: 5px solid orangered;
+}
+
+.admin-card__buttons {
+    position: absolute;
+    z-index: 1000;
+    top: 10px;
+    left: 10px;
+}
+
+.admin-card__button {
+    padding: 2px 4px;
+    border-radius: 5px;
+}
+.admin-card__edit-btn {
+    background-color: rgb(252, 220, 160);
+    border: 1px solid orange;
+    color: orange
+}
+
+.admin-card__delete-btn {
+    background-color: rgb(253, 138, 138);
+    border: 1px solid red;
+    color: red;
+}

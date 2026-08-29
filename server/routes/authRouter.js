@@ -11,7 +11,8 @@ import {
 import authMiddleware from "../middlewares/authMiddleware.js";
 import adminMiddleware from "../middlewares/adminMiddleware.js";
 
-router.get('/users', authMiddleware, adminMiddleware, getUsers)
+// router.get('/users', authMiddleware, adminMiddleware, getUsers)
+router.get('/users', getUsers)
 router.post('/register', register)
 router.post('/login', login)
 

@@ -3,10 +3,8 @@ import { useState } from 'react'
 import Button from '../Button/Button'
 import CloseButton from '../CloseButton/CloseButton'
 import { loginApi } from '../../api/authApi'
-import {data, Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import useAuth from '../../hooks/useAuth'
-
-import {ROUTES, STORAGE_KEYS} from '../../constants'
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({

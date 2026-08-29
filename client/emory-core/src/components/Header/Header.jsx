@@ -1,21 +1,26 @@
-import './HeaderMain.css'
+import './Header.css'
 
 import useAuth from '../../hooks/useAuth.js'
+import useFavorite from '../../hooks/useFavorite.js'
 
 import Button from '../Button/Button.jsx'
 import CountButton from '../CountButton/CountButton.jsx'
 import ProtectedButton from '../ProtectedButton/ProtectedButton.jsx'
 
 import {useNavigate} from 'react-router-dom'
+
 import { ROUTES } from '../../constants/routes.js'
 
 import {ShoppingBasket, Heart, User, UserShield} from 'lucide-react'
 
 
-const HeaderMain = () => {
+const Header = () => {
     const navigate = useNavigate()
 
     const {isLogin, isAdmin, logout, username} = useAuth()
+    const {favorites} = useFavorite()
+    
+    const favoritesCount = favorites.length
 
     const buttonsSize = 40
 
@@ -35,7 +40,7 @@ const HeaderMain = () => {
                     <li className='left-side__item'>
                         <Button
                         className='big-button' 
-                        onClick={ () => {navigate('/')}} 
+                        onClick={ () => {navigate(ROUTES.CATALOG)}} 
                             >
                             Каталог
                         </Button>
@@ -105,7 +110,7 @@ const HeaderMain = () => {
                     <li className='right-side__item'>
                         <CountButton 
                         to={ROUTES.FAVORITE}
-                        count={100}
+                        count={favoritesCount}
                         >
                             <Heart size={buttonsSize}/>
                         </CountButton>
@@ -135,4 +140,4 @@ const HeaderMain = () => {
     )
 }
 
-export default HeaderMain
+export default Header

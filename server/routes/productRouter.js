@@ -6,6 +6,7 @@ import {
     createProduct,
     getProducts,
     getProductById,
+    getProductsByCategory,
     deteteProductById,
     updateProductById,
     
@@ -14,6 +15,9 @@ import {
 router.post('/', createProduct)
 router.get('/', getProducts)
 router.get('/:id', getProductById)
+
+router.get('/category/:id', getProductsByCategory)
+
 router.delete('/:id', deteteProductById)
 router.put('/:id', updateProductById)
 

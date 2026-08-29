@@ -1,6 +1,6 @@
 import './Layout.css'
 
-import HeaderMain from '../HeaderMain/HeaderMain'
+import HeaderMain from '../Header/Header'
 
 const Layout = (props) => {
     const {

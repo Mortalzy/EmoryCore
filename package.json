@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client/emory-core && npm run dev",
+    "dev:server": "cd server && npm run dev"
+  }
+}

@@ -20,7 +20,9 @@ const authMiddleware = async (req, res, next) => {
             return res.status(500).json({message: "Токен отсутствует"})
         }
 
-        const decoded = await jwt.verify(token, process.env.JWT_SECRET_KEY)
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
+
+        console.log("DECODED: ", decoded)
 
         req.user = decoded
 
