@@ -1,4 +1,4 @@
-import {User} from '../models/index.js'
+import {Basket, User} from '../models/index.js'
 import bcrypt from 'bcrypt'
 import { generateJWT } from '../services/JwtService.js'
 
@@ -33,6 +33,8 @@ const register = async (req, res) => {
         })
 
         const token = generateJWT(user.id, user.email, user.role)
+
+        const basket = await Basket.create(user.id)
 
         return res.status(201).json({
             first_name: user.first_name,
@@ -77,6 +79,8 @@ const login = async (req, res) => {
         }
 
         const token = generateJWT(user.id, user.email, user.role)
+
+        const basket = await Basket.findOrCreate({where: {user_id: user.id}})
 
         return res.status(200).json({
             id: user.id,

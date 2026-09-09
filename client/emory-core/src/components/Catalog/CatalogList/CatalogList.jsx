@@ -1,6 +1,7 @@
 import './CatalogList.css'
 import ProductCard from '../../ProductCard/ProductCard'
 import useFavorite from '../../../hooks/useFavorite'
+import useBasket from '../../../hooks/useBasket'
 
 const CatalogList = (props) => {
 
@@ -9,6 +10,9 @@ const CatalogList = (props) => {
     } = props
 
     const {favorites, toggleFavorite} = useFavorite()
+    const {basket, toggleBasket} = useBasket()
+
+    const basketItems = basket.basket_items
 
     return (
         <ul className='catalog-list'>
@@ -18,6 +22,8 @@ const CatalogList = (props) => {
                      product={item}
                      isFavorite={favorites.filter(fav => fav.product_id === item.id).length > 0}
                      toggleFavorite={toggleFavorite}
+                     isItemInBasket={basketItems.filter(basket_item => basket_item.product_id === item.id).length > 0}
+                     toggleBasket={toggleBasket}
                     />
                 </li>
             ))}

@@ -68,7 +68,7 @@ const deleteCategoryById = async (req, res) => {
             return res.status(404).json({message: "Категория с выбранным id не найдена"})
         }
 
-        const noname_category = await Category.findOne({
+        const noname_category = await Category.findOrCreate({
             where: {name: "Без названия"}
         })
 

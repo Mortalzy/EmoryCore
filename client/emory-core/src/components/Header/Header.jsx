@@ -2,6 +2,7 @@ import './Header.css'
 
 import useAuth from '../../hooks/useAuth.js'
 import useFavorite from '../../hooks/useFavorite.js'
+import useBasket from '../../hooks/useBasket.js'
 
 import Button from '../Button/Button.jsx'
 import CountButton from '../CountButton/CountButton.jsx'
@@ -19,8 +20,10 @@ const Header = () => {
 
     const {isLogin, isAdmin, logout, username} = useAuth()
     const {favorites} = useFavorite()
+    const {basket} = useBasket()
     
     const favoritesCount = favorites.length
+    const basketItemsCount = basket.basket_items.length
 
     const buttonsSize = 40
 
@@ -101,7 +104,7 @@ const Header = () => {
                     <li className='right-side__item'>
                         <CountButton 
                         to={ROUTES.BASKET}
-                        count={67}
+                        count={basketItemsCount}
                         >
                             <ShoppingBasket size={buttonsSize}/>
                         </CountButton>

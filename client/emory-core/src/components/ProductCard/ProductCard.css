@@ -10,6 +10,26 @@
     overflow: hidden;
 }
 
+.product__basket-btn {
+    position: absolute;
+    z-index: 1000;
+    top: 5px;
+    right: 45px;
+}
+
+
+.basket-icon {
+    transition: transform 0.2s ease;
+}
+
+.basket-icon:hover {
+    transform: scale(1.2);
+}
+
+.basket-icon--active {
+    fill: rgb(0, 0, 40);
+}
+
 .product__favorite-btn {
     position: absolute;
     z-index: 1000;
@@ -25,7 +45,7 @@
     transform: scale(1.2);
 }
 
-.favorite-icon__active {
+.favorite-icon--active {
     fill: rgb(253, 114, 114);
 }
 

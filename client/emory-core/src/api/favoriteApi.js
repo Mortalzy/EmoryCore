@@ -1,8 +1,7 @@
-import { URL, STORAGE_KEYS } from "../constants"
+import { URL } from "../constants"
+import getToken from "../utils/getToken"
 
-const getToken = () => {
-    return localStorage.getItem(STORAGE_KEYS.TOKEN)
-}
+const token = getToken()
 
 const getFavoritesApi = async () => {
     const token = getToken()

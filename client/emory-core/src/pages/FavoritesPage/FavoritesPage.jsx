@@ -6,7 +6,6 @@ import Layout from '../../components/Layout/Layout'
 const FavoritesPage = () => {
     const {
         favorites,
-        setFavorites
     } = useFavorite()
 
     console.log(favorites);

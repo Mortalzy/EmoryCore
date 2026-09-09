@@ -2,6 +2,8 @@ import Product from "./Product.js";
 import User from "./User.js";
 import Category from "./Category.js";
 import Favorite from "./Favorite.js";
+import Basket from "./Basket.js";
+import BasketItem from "./BasketItem.js";
 
 Category.hasMany(Product, {
     foreignKey: "category_id",
@@ -34,10 +36,44 @@ Favorite.belongsTo(Product, {
 })
 
 
+// User ↔ Basket (один к одному)
+User.hasOne(Basket, {
+    foreignKey: 'user_id',
+    as: 'basket',          // ← user.basket
+})
+
+Basket.belongsTo(User, {
+    foreignKey: 'user_id',
+    as: 'user',            // ← basket.user
+})
+
+// Basket ↔ BasketItem (один ко многим)
+Basket.hasMany(BasketItem, {
+    foreignKey: 'basket_id',
+    as: 'basket_items',           // ← basket.items
+})
+
+BasketItem.belongsTo(Basket, {
+    foreignKey: 'basket_id',
+    as: 'basket',          // ← basketItem.basket
+})
+
+// Product ↔ BasketItem (один ко многим)
+Product.hasMany(BasketItem, {
+    foreignKey: 'product_id',
+    as: 'basket_items',     // ← product.basketItems
+})
+
+BasketItem.belongsTo(Product, {
+    foreignKey: 'product_id',
+    as: 'product',         // ← basketItem.product
+})
 
 export {
     Product,
     User,
     Category,
-    Favorite
+    Favorite,
+    Basket,
+    BasketItem,
 }

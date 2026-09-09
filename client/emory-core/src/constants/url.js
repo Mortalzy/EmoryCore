@@ -4,7 +4,8 @@ const URL = {
     DEFAULT_URL: BASE_URL,
     PRODUCT_URL: `${BASE_URL}/api/products`,
     CATEGORY_URL: `${BASE_URL}/api/categories`,
-    FAVORITE_URL: `${BASE_URL}/api/favorites`
+    FAVORITE_URL: `${BASE_URL}/api/favorites`,
+    BASKET_URL: `${BASE_URL}/api/basket`,
 }
 
 export {

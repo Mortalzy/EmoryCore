@@ -1,4 +1,7 @@
 import { URL } from "../constants"
+import getToken from "../utils/getToken"
+
+const token = getToken()
 
 const getProductsApi = async () => {
     const response = await fetch(URL.PRODUCT_URL)
@@ -19,6 +22,7 @@ const createProductApi = async (productData) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(productData) 
     })
@@ -35,6 +39,9 @@ const createProductApi = async (productData) => {
 const deleteProductApi = async (id) => {
     const response = await fetch(`${URL.PRODUCT_URL}/${id}`, {
         method: "DELETE",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        }
     })
 
     const data = await response.json()
@@ -51,6 +58,7 @@ const updateProductApi = async (id, newData) => {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(newData) 
     })

@@ -1,0 +1,41 @@
+.basket-card {
+    display: flex;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.basket-card__image {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+}
+
+.basket-card__change-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.basket-card__buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.basket-card__button {
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    color: white;
+    border-radius: 5px;
+}
+
+.basket-card__button--plus {
+    background-color: rgb(108, 245, 108);
+}
+
+.basket-card__button--minus {
+    background-color: rgb(255, 128, 128);
+}
