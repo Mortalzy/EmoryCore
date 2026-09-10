@@ -1,7 +1,5 @@
 import './Header.css'
 
-import useAuth from '../../hooks/useAuth.js'
-import useFavorite from '../../hooks/useFavorite.js'
 import useBasket from '../../hooks/useBasket.js'
 
 import Button from '../Button/Button.jsx'
@@ -9,6 +7,11 @@ import CountButton from '../CountButton/CountButton.jsx'
 import ProtectedButton from '../ProtectedButton/ProtectedButton.jsx'
 
 import {useNavigate} from 'react-router-dom'
+
+import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext.jsx'
+import { BasketContext } from '../../context/BasketContext.jsx'
+import { FavoriteContext } from '../../context/FavoriteContext.jsx'
 
 import { ROUTES } from '../../constants/routes.js'
 
@@ -18,9 +21,20 @@ import {ShoppingBasket, Heart, User, UserShield} from 'lucide-react'
 const Header = () => {
     const navigate = useNavigate()
 
-    const {isLogin, isAdmin, logout, username} = useAuth()
-    const {favorites} = useFavorite()
-    const {basket} = useBasket()
+    const {
+        isLogin,
+        isAdmin, 
+        logout, 
+        username
+    } = useContext(AuthContext) 
+
+    const {
+        favorites
+    } = useContext(FavoriteContext)
+
+    const {
+        basket
+    } = useContext(BasketContext)
     
     const favoritesCount = favorites.length
     const basketItemsCount = basket.basket_items.length

@@ -1,11 +1,10 @@
 import './AdminCard.css'
 import Button from '../../Button/Button'
-import ProductCard from '../../ProductCard/ProductCard'
+import Card from '../../Card/Card'
 
 const AdminCard = (props) => {
     const {
         item,
-        isProducts,
         onDelete,
         onEdit,
         isEdit=false
@@ -28,7 +27,7 @@ const AdminCard = (props) => {
                 </Button>
             </div>
 
-            <ProductCard product={item}/>
+            <Card product={item}/>
 
         </div>
     )

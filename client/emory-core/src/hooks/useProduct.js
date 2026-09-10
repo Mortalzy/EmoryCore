@@ -9,7 +9,7 @@ const useProduct = () => {
         loadProducts()
     }, [])
 
-    const loadProducts = async () => {
+    const loadProducts = () => {
         getProductsApi()
         .then( (products) => {
             console.log(products)
@@ -21,7 +21,7 @@ const useProduct = () => {
         })
     }
 
-    const createProduct = async (formData) => {
+    const createProduct = (formData) => {
         console.log('createProduct')
         console.log(formData)
         createProductApi(formData)
@@ -33,7 +33,7 @@ const useProduct = () => {
         .catch(err => console.log(err.message))
     }
 
-    const deleteProduct = async (id) => {
+    const deleteProduct = (id) => {
         deleteProductApi(id)
         .then( (product) => {
             const newProducts = products.filter( prod => prod.id !== id)
@@ -43,7 +43,7 @@ const useProduct = () => {
         .catch(err => console.log(err.message))
     }
 
-    const editProduct = async (id, newData) => {
+    const editProduct = (id, newData) => {
         updateProductApi(id, newData)
         .then( (updatedProduct) => {
             setProducts(products.map(product => 

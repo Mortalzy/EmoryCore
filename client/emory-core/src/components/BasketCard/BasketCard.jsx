@@ -1,14 +1,18 @@
 import "./BasketCard.css"
 import Button from "../Button/Button"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import ImagePlaceholder from "../ImagePlaceholder/ImagePlaceholder"
+import { BasketContext } from "../../context/BasketContext"
 
 const BasketCard = (props) => {
     const {
         basketItem,
-        updateBasketItem,
-        handleDeleteItem,
     } = props
+
+    const {
+        updateBasketItem,
+        removeFromBasket,
+    } = useContext(BasketContext)
 
     const [imgError, setImgError] = useState(false)
 

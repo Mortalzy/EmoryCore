@@ -1,19 +1,25 @@
 import "./ProductCard.css"
 import Button from "../Button/Button"
-import ImagePlaceholder from "../ImagePlaceholder/ImagePlaceholder"
+import Card from "../Card/Card"
 import {Heart, ShoppingCart} from 'lucide-react'
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { BasketContext } from "../../context/BasketContext"
+import { FavoriteContext } from "../../context/FavoriteContext"
 
 const ProductCard = (props) => {
     const {
         product,
-        isFavorite,
-        toggleFavorite,
-        isItemInBasket,
-        toggleBasket,
     } = props
 
-    const [imgError, setImgError] = useState(false)
+    const {
+        toggleBasket,
+        isItemInBasket
+    } = useContext(BasketContext)
+
+    const {
+        toggleFavorite,
+        isFavorite,
+    } = useContext(FavoriteContext)
 
     const iconSize = 30
 
@@ -23,7 +29,7 @@ const ProductCard = (props) => {
             onClick={() => {toggleBasket(product.id)}}
             >
                 <ShoppingCart
-                className={`basket-icon ${isItemInBasket ? 'basket-icon--active' : ''}`} 
+                className={`basket-icon ${isItemInBasket(product.id) ? 'basket-icon--active' : ''}`} 
                 size={iconSize}/>
             </Button>
 
@@ -31,26 +37,11 @@ const ProductCard = (props) => {
             onClick={() => toggleFavorite(product)}
             >
                 <Heart
-                className={`favorite-icon ${isFavorite ? 'favorite-icon--active' : ''}`}
+                className={`favorite-icon ${isFavorite(product.id) ? 'favorite-icon--active' : ''}`}
                 size={iconSize}/>
             </Button>
-            { product.imageUrl && !imgError
-            ? (
-                <img className="product-img" 
-                src={product.imageUrl} 
-                alt={product.name}
-                onError={() => setImgError(true)} 
-                />
-                
-            )
-            : ( 
-                <ImagePlaceholder/>
-            )
-            }
             
-            <h2 className="product__title">{product.name}</h2>
-            {/* <h3 className="product__category">{product.category.name}</h3> */}
-            <p className="product__price">{product.price}</p>
+            <Card product={product}/>
         </div>
     )
 }

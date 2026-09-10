@@ -29,7 +29,6 @@ const AdminPanel = () => {
 
     const {
         categories,
-        setCategories,
         createCategory,
         editCategory,
         deleteCategory
@@ -37,7 +36,6 @@ const AdminPanel = () => {
 
     const {
         products,
-        setProducts,
         createProduct,
         deleteProduct,
         editProduct,
@@ -68,7 +66,7 @@ const AdminPanel = () => {
         if(productMode) { // Продукты
             if(isEdit && editedId) {
                 console.log(formData)
-                await editProduct(editedId, {
+                editProduct(editedId, {
                     name: formData.name,
                     description: formData.description,
                     imageUrl: formData.imageUrl, 
@@ -77,7 +75,7 @@ const AdminPanel = () => {
                 })
             }
             else {
-                await createProduct({
+                createProduct({
                     name: formData.name,
                     description: formData.description,
                     imageUrl: formData.imageUrl, 

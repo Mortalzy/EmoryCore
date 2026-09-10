@@ -18,7 +18,6 @@ const AdminList = (props) => {
                     <li key={item.id} className="item">
                         <AdminCard
                         item={item}
-                        isProducts={productMode}
                         onDelete={handleDelete}
                         onEdit={handleEdit}
                         isEdit={item.id === editedId}

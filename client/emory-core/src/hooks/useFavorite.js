@@ -8,6 +8,10 @@ const useFavorite = () => {
         loadFavorites()
     }, [])
 
+    const isFavorite = (product_id) => {
+        return favorites.filter(fav => fav.product_id === product_id).length > 0
+    }
+
     const toggleFavorite = async (product) => {
         const favProduct = favorites.find(fav => fav.product_id === product.id)
         
@@ -54,7 +58,8 @@ const useFavorite = () => {
         setFavorites,
         addFavorite,
         removeFavorite,
-        toggleFavorite
+        toggleFavorite,
+        isFavorite,
     }
 }
 

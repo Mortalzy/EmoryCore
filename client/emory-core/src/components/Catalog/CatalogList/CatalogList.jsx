@@ -1,33 +1,26 @@
 import './CatalogList.css'
 import ProductCard from '../../ProductCard/ProductCard'
-import useFavorite from '../../../hooks/useFavorite'
-import useBasket from '../../../hooks/useBasket'
+import { useContext } from 'react'
+import { FavoriteContext } from '../../../context/FavoriteContext'
+import { BasketContext } from '../../../context/BasketContext'
+import List from '../../List/List'
+import useProduct from '../../../hooks/useProduct'
 
-const CatalogList = (props) => {
+const CatalogList = () => {
+    const {products} = useProduct()
 
-    const {
-        products
-    } = props
-
-    const {favorites, toggleFavorite} = useFavorite()
-    const {basket, toggleBasket} = useBasket()
+    const {favorites} = useContext(FavoriteContext)
+    const {basket} = useContext(BasketContext)
 
     const basketItems = basket.basket_items
 
     return (
-        <ul className='catalog-list'>
-            {products.map( item => (
-                <li key={item.id} className='list-item'>
-                    <ProductCard
-                     product={item}
-                     isFavorite={favorites.filter(fav => fav.product_id === item.id).length > 0}
-                     toggleFavorite={toggleFavorite}
-                     isItemInBasket={basketItems.filter(basket_item => basket_item.product_id === item.id).length > 0}
-                     toggleBasket={toggleBasket}
-                    />
-                </li>
-            ))}
-        </ul>
+        // <ProductCard
+        // product={item}
+        // isFavorite={favorites.filter(fav => fav.product_id === item.id).length > 0} 
+        // isItemInBasket={basketItems.filter(basket_item => basket_item.product_id === item.id).length > 0}
+        // />
+        <List items={products} ItemComponent={ProductCard}/>
     )
 }
 

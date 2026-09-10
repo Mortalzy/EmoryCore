@@ -1,10 +1,14 @@
 import "./BasketTotal.css"
 import Button from "../Button/Button"
+import { useContext } from "react"
+import { BasketContext } from "../../context/BasketContext"
 
 const BasketTotal = (props) => {
     const {
-        basketItems
-    } = props
+        basket
+    } = useContext(BasketContext)
+
+    const basketItems = basket.basket_items
 
     console.log(basketItems)
 
