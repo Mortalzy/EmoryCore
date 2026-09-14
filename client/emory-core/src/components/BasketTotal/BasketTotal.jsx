@@ -2,11 +2,19 @@ import "./BasketTotal.css"
 import Button from "../Button/Button"
 import { useContext } from "react"
 import { BasketContext } from "../../context/BasketContext"
+import { OrderContext } from '../../context/OrderContext'
+
+
 
 const BasketTotal = (props) => {
     const {
         basket
     } = useContext(BasketContext)
+
+    const {
+        orders,
+        createOrder
+    } = useContext(OrderContext)
 
     const basketItems = basket.basket_items
 
@@ -24,7 +32,7 @@ const BasketTotal = (props) => {
         <div className="basket-total">
             <p>Товаров в корзине: {basketItemsCount}</p>
             <p>Общая сумма товаров: {totalBasketItems}</p>
-            <Button>ОФОРМИТЬ ЗАКАЗ</Button>
+            <Button onClick={createOrder}>ОФОРМИТЬ ЗАКАЗ</Button>
         </div>
     )
 }

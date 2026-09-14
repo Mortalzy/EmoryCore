@@ -4,6 +4,8 @@ import Category from "./Category.js";
 import Favorite from "./Favorite.js";
 import Basket from "./Basket.js";
 import BasketItem from "./BasketItem.js";
+import Order from "./Order.js";
+import OrderItem from "./OrderItem.js";
 
 Category.hasMany(Product, {
     foreignKey: "category_id",
@@ -69,6 +71,41 @@ BasketItem.belongsTo(Product, {
     as: 'product',         // ← basketItem.product
 })
 
+// User -> Order
+User.hasMany(Order, {
+    foreignKey: "user_id",
+    as: "orders",
+});
+
+Order.belongsTo(User, {
+    foreignKey: "user_id",
+    as: "user",
+});
+
+
+// Order -> OrderItem
+Order.hasMany(OrderItem, {
+    foreignKey: "order_id",
+    as: "order_items",
+});
+
+OrderItem.belongsTo(Order, {
+    foreignKey: "order_id",
+    as: "order",
+});
+
+
+// Product -> OrderItem
+Product.hasMany(OrderItem, {
+    foreignKey: "product_id",
+    as: "order_items",
+});
+
+OrderItem.belongsTo(Product, {
+    foreignKey: "product_id",
+    as: "product",
+});
+
 export {
     Product,
     User,
@@ -76,4 +113,6 @@ export {
     Favorite,
     Basket,
     BasketItem,
+    Order,
+    OrderItem,
 }

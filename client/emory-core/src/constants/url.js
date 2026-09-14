@@ -6,6 +6,8 @@ const URL = {
     CATEGORY_URL: `${BASE_URL}/api/categories`,
     FAVORITE_URL: `${BASE_URL}/api/favorites`,
     BASKET_URL: `${BASE_URL}/api/basket`,
+    ORDER_URL: `${BASE_URL}/api/order`,
+    USER_URL: `${BASE_URL}/api/user`
 }
 
 export {

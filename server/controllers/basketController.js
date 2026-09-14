@@ -1,4 +1,4 @@
-import { log } from "node:console"
+
 import { Basket, BasketItem, Product,  } from "../models/index.js"
 
 const getBasket = async (req, res) => {

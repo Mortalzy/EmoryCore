@@ -3,6 +3,7 @@ import AppRoutes from './components/AppRoutes/AppRoutes'
 import { AuthProvider } from './context/AuthContext'
 import { BasketProvider } from './context/BasketContext'
 import { FavoriteProvider } from './context/FavoriteContext'
+import { OrderProvider } from './context/OrderContext'
 
 
 
@@ -12,7 +13,9 @@ const App = () => {
         <AuthProvider>
           <BasketProvider>
             <FavoriteProvider>
-              <AppRoutes />
+              <OrderProvider>
+                <AppRoutes />
+              </OrderProvider>
             </FavoriteProvider>
           </BasketProvider>
         </AuthProvider>
