@@ -47,6 +47,8 @@ const useAuth = () => {
         localStorage.setItem(STORAGE_KEYS.TOKEN, token)
         localStorage.setItem(STORAGE_KEYS.DATA, JSON.stringify(data))
 
+        setUsername(data.first_name)
+
         navigate(ROUTES.MAIN)
     }
 

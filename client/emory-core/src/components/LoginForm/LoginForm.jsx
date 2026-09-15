@@ -1,10 +1,10 @@
 import './LoginForm.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Button from '../Button/Button'
 import CloseButton from '../CloseButton/CloseButton'
 import { loginApi } from '../../api/authApi'
-import {Link, useNavigate} from 'react-router-dom'
-import useAuth from '../../hooks/useAuth'
+import {Link} from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -12,9 +12,7 @@ const LoginForm = () => {
         password: ''
     })
 
-    const { login } = useAuth()
-
-    const navigate = useNavigate()
+    const { login } = useContext(AuthContext)
 
     const [error, setError] = useState('')
 

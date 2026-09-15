@@ -1,7 +1,5 @@
 import './Header.css'
 
-import useBasket from '../../hooks/useBasket.js'
-
 import Button from '../Button/Button.jsx'
 import CountButton from '../CountButton/CountButton.jsx'
 import ProtectedButton from '../ProtectedButton/ProtectedButton.jsx'

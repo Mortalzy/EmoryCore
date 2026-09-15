@@ -9,6 +9,7 @@ const sequelize = new Sequelize({
     username: process.env.USERNAME_DB,
     host: process.env.HOSTNAME_DB,
     port: process.env.PORT_DB,
+    logging: false,
 })
 
 export default sequelize
